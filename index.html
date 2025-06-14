@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jesus Month ✝️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://source.unsplash.com/1600x900/?heaven,clouds') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 80px 20px 40px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 15px 20px;
+      color: gold;
+      font-weight: bold;
+      font-size: 1.2em;
+      text-align: center;
+      box-shadow: 0 0 15px gold;
+      z-index: 1000;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2.5em;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: gold;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    }
+
+    .slogan {
+      text-align: center;
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      color: white;
+      text-shadow: 0 0 5px gold;
+    }
+
+    .section {
+      margin: 50px 0;
+      text-align: center;
+    }
+
+    .verse, .prayer, #devotionalBox {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 1.1em;
+      text-shadow: 0 0 5px #000;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+
+    .gallery p {
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .button {
+      background: gold;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 30px;
+      margin: 10px auto;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: white;
+      color: gold;
+      box-shadow: 0 0 10px gold;
+    }
+
+    #chatbox {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      height: 300px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 10px 20px;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid gold;
+      background: rgba(255,255,255,0.1);
+      color: gold;
+      font-size: 1em;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: row;
+      max-width: 600px;
+      margin: 20px auto;
+      gap: 10px;
+    }
+
+    @media screen and (max-width: 768px) {
+      header {
+        font-size: 2em;
+      }
+
+      .slogan {
+        font-size: 1em;
+      }
+
+      .input-group {
+        flex-direction: column;
+      }
+
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #chatbox {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>✨ Jesus Month ✝️ — Powered by Faith</nav>
+
+  <div class="overlay">
+    <header>Welcome to Jesus Month</header>
+    <div class="slogan">
+      ✨ June was, and always will be, <strong style="color: gold;">Jesus Month</strong>!
+    </div>
+
+    <div class="section verse">
+      “I can do all things through Christ who strengthens me.” — Philippians 4:13
+    </div>
+
+    <div class="section prayer">
+      Lord Jesus, thank You for this beautiful day.<br>
+      Help me walk in Your light and spread Your love.<br>
+      Let this month be a time of faith, joy, and hope.<br>
+      Amen 🙏
+    </div>
+
+    <div class="section">
+      <h2 style="color: gold;">💬 Bible Bot</h2>
+      <div id="chatbox"></div>
+      <div class="input-group">
+        <input id="emotionInput" type="text" placeholder="Tell me how you're feeling...">
+        <button class="button" onclick="bibleBot()">Send</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 style="color: gold;">📖 Daily Devotionals</h2>
+      <div id="devotionalBox">“For I know the plans I have for you,” declares the Lord...</div>
+      <button class="button" onclick="showDevotional()">Get Another</button>
+    </div>
+
+    <div class="section">
+      <h2 style="color: gold;">🖼️ Glory Through Images</h2>
+      <div class="gallery">
+        <div>
+          <img src="image1.jpg" alt="Image 1">
+          <p>“Let everything that has breath praise the Lord.” — Psalm 150:6</p>
+        </div>
+        <div>
+          <img src="image2.jpg" alt="Image 2">
+          <p>“The light shines in the darkness.” — John 1:5</p>
+        </div>
+        <div>
+          <img src="image3.jpg" alt="Image 3">
+          <p>“Be still and know that I am God.” — Psalm 46:10</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 style="color: gold;">📜 Testimonies</h2>
+      <div class="verse">
+        “Jesus changed my heart — I feel brand new every morning.”<br><br>
+        “When I was afraid, He gave me courage and peace.”<br><br>
+        — Shared in faith ✝️
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 style="color: gold;">🕊️ Verse of the Day</h2>
+      <div class="prayer">
+        Romans 8:28 — “In all things God works for the good of those who love Him.”
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 style="color: gold;">📦 Prayer Offering Box</h2>
+      <div class="verse" style="color: gold;">
+        “Offer your heart, your hopes, and your thankfulness to Jesus.”
+      </div>
+      <div class="input-group" style="flex-direction: column; max-width: 500px;">
+        <textarea id="offeringInput" rows="4" placeholder="Type your prayer offering here..."></textarea>
+        <button class="button" style="margin-top: 10px;" onclick="submitOffering()">Submit Offering</button>
+        <p id="thankYouMessage" style="color: gold; margin-top: 10px;"></p>
+      </div>
+    </div>
+
+    <footer>
+      Made with divine love by Ranjit Singh Jr.<br>
+      ✝️ Jesus Month 2025 | Faith. Light. Glory.
+    </footer>
+  </div>
+
+  <script>
+    function bibleBot() {
+      const input = document.getElementById("emotionInput").value.toLowerCase();
+      const chatbox = document.getElementById("chatbox");
+
+      const responses = [
+        { keywords: ["sad", "upset", "cry"], message: "Psalm 34:18 — 'The Lord is close to the brokenhearted.' 💛" },
+        { keywords: ["anxious", "worried", "stress"], message: "Philippians 4:6 — 'Do not be anxious about anything.' 🕊️" },
+        { keywords: ["tired", "weak"], message: "Matthew 11:28 — 'Come to me and I will give you rest.' 🌙" },
+        { keywords: ["lonely", "alone"], message: "Deuteronomy 31:6 — 'He will never leave you nor forsake you.' 🕊️" },
+        { keywords: ["happy", "joy", "grateful"], message: "James 1:17 — 'Every good and perfect gift is from above.' 🙌" },
+        { keywords: ["lost", "hopeless"], message: "Romans 15:13 — 'May the God of hope fill you with all joy and peace.' 🌟" },
+        { keywords: ["angry", "mad"], message: "Proverbs 15:1 — 'A gentle answer turns away wrath.' 💬" },
+        { keywords: ["confused", "doubt"], message: "Proverbs 3:5 — 'Trust in the Lord with all your heart.'" }
+      ];
+
+      chatbox.innerHTML += `<div style="text-align:right; margin:10px;"><span style="background:gold; color:black; padding:10px; border-radius:15px;">${input}</span></div>`;
+      chatbox.innerHTML += `<div id="typing" style="text-align:left; margin:10px;"><span style="background:white; color:black; padding:10px; border-radius:15px;">✍️ typing...</span></div>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+
+      setTimeout(() => {
+        document.getElementById("typing").remove();
+        let reply = "I'm here for you 💛";
+        for (let item of responses) {
+          for (let keyword of item.keywords) {
+            if (input.includes(keyword)) {
+              reply = item.message;
+              break;
+            }
+          }
+        }
+        chatbox.innerHTML += `<div style="text-align:left; margin:10px;"><span style="background:white; color:black; padding:10px; border-radius:15px;">${reply}</span></div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+      }, 1000);
+
+      document.getElementById("emotionInput").value = "";
+    }
+
+    const devotionals = [
+      "Isaiah 40:31 — 'Those who hope in the Lord will renew their strength.'",
+      "Romans 8:28 — 'God works for the good of those who love him.'",
+      "Proverbs 3:5 — 'Trust in the Lord with all your heart.'",
+      "Psalm 46:10 — 'Be still and know that I am God.'",
+      "John 14:27 — 'Peace I leave with you.'",
+      "Matthew 6:33 — 'Seek first His kingdom.'"
+    ];
+
+    function showDevotional() {
+      const box = document.getElementById("devotionalBox");
+      const random = Math.floor(Math.random() * devotionals.length);
+      box.innerHTML = devotionals[random];
+    }
+
+    function submitOffering() {
+      const offering = document.getElementById("offeringInput").value;
+      const thankYou = document.getElementById("thankYouMessage");
+
+      if (offering.trim() === "") {
+        thankYou.innerHTML = "🙏 Please enter something before submitting.";
+      } else {
+        thankYou.innerHTML = "💛 Thank you for your offering to Jesus. It has been received in faith.";
+        document.getElementById("offeringInput").value = "";
+      }
+    }
+  </script>
+</body>
+</html>
