@@ -1,29 +1,29 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jesus Month</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #000;
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
       color: gold;
     }
 
     header {
-      background: #111;
-      padding: 30px 20px;
+      background: linear-gradient(to right, #111, #222);
+      padding: 40px 20px;
       text-align: center;
-      box-shadow: 0 0 15px gold;
+      box-shadow: 0 0 25px gold;
     }
 
     h1 {
       margin: 0;
       font-size: 3em;
-      text-shadow: 0 0 10px gold;
+      text-shadow: 0 0 15px gold;
     }
 
     p.subtitle {
@@ -32,18 +32,23 @@
     }
 
     .section {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 40px auto;
-      background: #111;
+      background: rgba(255, 215, 0, 0.05);
       border-radius: 15px;
       padding: 30px;
-      box-shadow: 0 0 15px #ffd70033;
+      box-shadow: 0 0 20px #ffd70022;
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: scale(1.01);
     }
 
     .section h2 {
       color: gold;
       margin-bottom: 10px;
-      text-shadow: 0 0 5px gold;
+      text-shadow: 0 0 8px gold;
     }
 
     .section p, .section em {
@@ -52,44 +57,63 @@
 
     .offering-box textarea {
       width: 100%;
-      height: 100px;
-      border-radius: 10px;
+      height: 120px;
+      border-radius: 12px;
       border: 2px solid gold;
-      background: #000;
+      background: #1a1a1a;
       color: gold;
       padding: 10px;
       font-size: 1em;
+      resize: vertical;
     }
 
-    .offering-box button, .upi-box a, .chatbox button {
+    button, .upi-box a {
       background-color: gold;
       color: black;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 1em;
-      border-radius: 8px;
-      margin-top: 10px;
+      border-radius: 10px;
+      margin-top: 15px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      box-shadow: 0 0 10px gold;
+      transition: 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
     }
 
-    .offering-box button:hover, .upi-box a:hover, .chatbox button:hover {
+    button:hover, .upi-box a:hover {
       background-color: #fff700;
     }
 
     .upi-box img {
       width: 200px;
       margin-top: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px gold;
     }
 
     .chatbox input {
-      width: 80%;
+      width: 75%;
       padding: 10px;
       margin-top: 10px;
       border-radius: 10px;
       border: 1px solid gold;
-      background: #000;
+      background: #111;
       color: gold;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px gold;
     }
 
     footer {
@@ -98,7 +122,7 @@
       background: #111;
       font-size: 0.9em;
       color: gold;
-      text-shadow: 0 0 2px gold;
+      text-shadow: 0 0 3px gold;
     }
   </style>
 </head>
@@ -115,7 +139,7 @@
 
   <section class="section">
     <h2>Devotional of the Day</h2>
-    <p>Spend time today reflecting on the love Jesus showed through His sacrifice. Let your actions reflect His grace, and let your words speak life into others.</p>
+    <p>Let the Word guide your heart today. Remember: the cross was not the end — it was the beginning.</p>
   </section>
 
   <section class="section upi-box">
@@ -140,6 +164,13 @@
     <p id="botResponse"></p>
   </section>
 
+  <section class="section gallery">
+    <h2>Images of Faith</h2>
+    <img src="images/crucifixion.jpg" alt="Crucifixion">
+    <img src="images/resurrection.jpg" alt="Resurrection">
+    <img src="images/ascension.jpg" alt="Ascension">
+  </section>
+
   <footer>
     Made with divine love by Ranjit Singh Jr.
   </footer>
@@ -151,25 +182,18 @@
       responseElem.textContent = "Thinking... 🙏";
 
       try {
-        const reply = await fetch("https://api.openai.com/v1/chat/completions", {
+        const reply = await fetch("/.netlify/functions/bible-bot", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer YOUR_OPENAI_API_KEY_HERE"
+            "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              { role: "system", content: "You are a friendly Bible assistant named Bible Bot. Help the user understand Jesus, the Gospel, and offer encouragement." },
-              { role: "user", content: userInput }
-            ]
-          })
+          body: JSON.stringify({ message: userInput })
         });
 
         const data = await reply.json();
-        responseElem.textContent = data.choices?.[0]?.message?.content || "Sorry, I couldn't respond. Try again!";
+        responseElem.textContent = data.reply || "Hmm... I didn’t quite get that. Try again!";
       } catch (err) {
-        responseElem.textContent = "Oops! Something went wrong.";
+        responseElem.textContent = "Oops! Something went wrong. 🙏";
       }
     }
   </script>
